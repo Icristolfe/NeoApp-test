@@ -33,6 +33,7 @@ function Home() {
     setSelectedComic(null); 
     navigate('/comic'); 
   }
+
   
 
   return (
@@ -42,13 +43,14 @@ function Home() {
 
      
 {comics.map(comic => (
-  <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)}>
+  <ContainerCard key={comic.id} >
     <div className="thumbnail">
       <img src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title} />
     </div>
     <div className="content">
       <h2>{comic.title}</h2>
       <h3>Price: ${comic.prices[0].price}</h3>
+      <button onClick={() => handleSelectComic(comic)}>Ver Mais</button>
     </div>
   </ContainerCard>
 ))}
