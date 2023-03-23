@@ -167,7 +167,7 @@ export const Overlay = styled.div`
       align-items: center;
       text-align: center;
       flex-direction: column;
-      width: 55%;
+      width: 100%;
       gap: 10px;
     }
 
@@ -189,6 +189,29 @@ export const Overlay = styled.div`
       align-items: center;
       justify-content: flex-start;
       margin-top: 20px;
+    }
+
+    @media(max-width: 767px) { /* Mobile */
+      .selected-comic {
+        width: 90%;
+        max-width: 90%;
+        max-height: none;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) { /* Tablet */
+      .selected-comic {
+        width: 60%;
+        max-width: 60%;
+        max-height: none;
+      }
+    }
+
+    @media (min-width: 1024px) { /* Desktop */
+      .selected-comic {
+        width: 50%;
+        max-width: 50%;
+      }
     }
   }
 `;
@@ -214,7 +237,17 @@ export const StyledLink = styled.a`
   cursor: pointer;
   margin-top: ${props => (props.add ? "15px" : "0")};
 
+@media(max-width: 767px) { /* Mobile */
+  width: 100%;
+  height: 50px;
 
+      }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  width: 100%;
+  height: 50px;
+      }
+    
   &:hover {
     opacity:0.8;
     background:${mainColor};
