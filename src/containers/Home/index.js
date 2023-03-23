@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 import { setComics, setSelectedComic } from '../../features/comicSlice';
 import { useDispatch } from 'react-redux';
+
 import {
   Container,
   ContainerCard,
   Overlay,
-  StyledLink
+  StyledLink,
+  Start
 } from './styles';
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
@@ -16,15 +18,40 @@ function Home() {
   const [ pageComics, setPageComics] = useState()
   const [selectedPageComic, setSelectedPageComic] = useState(null);
   const dispatch = useDispatch();
+  const [start, setStart] = useState(true);
 
+  
   useEffect(() => {
+    
     async function getComics() {
       const { data } = await api.get('/comics');
-      dispatch(setComics(data.data.results));
-      setPageComics(data.data.results)
+      
+      // Adiciona a propriedade "rare" aleatoriamente a dois comics
+      const rareIndices = [];
+      while (rareIndices.length < 2) {
+        const index = Math.floor(Math.random() * data.data.results.length);
+        if (!rareIndices.includes(index)) {
+          rareIndices.push(index);
+        }
+      }
+      const rareComics = data.data.results.map((comic, index) => {
+        if (rareIndices.includes(index)) {
+          return { ...comic, rare: true };
+        } else {
+          return comic;
+        }
+      });
+
+      
+      // Atualiza o estado do componente com os resultados modificados
+      dispatch(setComics(rareComics));
+      setPageComics(rareComics);
+
     }
+    
     getComics();
   }, [dispatch]);
+  
 
   // Seleciona uma HQ
   const handleSelectComic = (comic) => {
@@ -37,14 +64,39 @@ function Home() {
     navigate('/comic')
   }
 
+  
  
 
   return (
     <div>
       <Container>
+      {
+      start&&
+      <Start>
+        <h1>HQ's App</h1>
+
+        <div>
+
+        </div>
+        <p>Cupons raros são marcados com a cor abaixo</p>
+        <div className="color"></div>
+        <StyledLink
+        start={true}
+        size="40px"
+         width="40%"
+        href="#" 
+        onClick={() => setStart(null)}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+              Fechar
+            </StyledLink>
+      </Start>
+}
         { pageComics &&
          pageComics.map(comic => (
-          <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)}>
+          <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
             <div className="thumbnail">
               
               <img src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title} />
@@ -92,7 +144,10 @@ function Home() {
               <p>Price: ${selectedPageComic.prices[0].price}</p>
 
               
-              <StyledLink add={true} onClick={() => handleAddComic(selectedPageComic)}>
+              <StyledLink add={true}
+              size="40px"
+              width="100%"
+              onClick={() => handleAddComic(selectedPageComic)}>
             <span></span>
             <span></span>
             <span></span>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const mainColor = "#FF0000";
+const rareColor = "#00FFFF"
 const secondaryColor = "#000000";
 const textColor = "#FFFFFF";
 const lightTextColor = "#CCCCCC";
@@ -13,8 +14,49 @@ export const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 15px;
   padding: 0 20px 20px 20px;
+
+
+  .rare-border {
+  border: 2px solid ${rareColor};
+  box-shadow: 0 0 20px 0 ${rareColor};
+}
   
 `;
+
+export const Start = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  color:${rareColor};
+  background-color: #000;
+  border-radius: 5px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 30px;
+  z-index: 1;
+  
+
+  .color {
+    width: 5%;
+    height: 40px;
+    background: ${rareColor};
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  p { 
+    margin-bottom: 20px;
+   }
+
+
+`
+
 export const ContainerCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -114,6 +156,7 @@ export const ContainerCard = styled.div`
       }
     }
   }
+
 `;
 
 export const Overlay = styled.div`
@@ -220,7 +263,7 @@ export const Overlay = styled.div`
 export const StyledLink = styled.a`
   position: relative;
   display: inline-block;
-  color:${mainColor} ;
+  color:${props => props.start ? "#00FFFF" : " #FF0000"} ;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -228,17 +271,17 @@ export const StyledLink = styled.a`
   transition: 0.2s;
   letter-spacing: 5px;
   font-weight: 900;
-  width:${props => ( props.add ? "100%" : "25%")};
-  height: ${props => ( props.add ? "40px" : "18px")};
+  width: ${(props) => props.width || "25px"};
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-top: ${props => (props.add ? "15px" : "0")};
+  height: ${(props) => props.size || "18px"};
 
 @media(max-width: 767px) { /* Mobile */
-  width: 100%;
+  width: ${props => props.start ? "60%" : "100%"} ;
   height: 50px;
 
       }
@@ -250,13 +293,14 @@ export const StyledLink = styled.a`
     
   &:hover {
     opacity:0.8;
-    background:${mainColor};
-    color: #fff;
+    background: ${props => props.start ? "#00FFFF" : " #FF0000"};
+    color:${props => props.start ? "#000" : " #FFF"};
     border-radius: 5px;
-    box-shadow: 0 0 5px #FF0000,
-                0 0 25px #FF0000,
-                0 0 50px #FF0000,
-                0 0 100px #FF0000;
+    box-shadow:
+    0 0 5px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 25px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 50px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 100px ${props => props.start ? "#00FFFF" : " #FF0000"};
     
   }
 
@@ -277,7 +321,7 @@ export const StyledLink = styled.a`
     left: -100%;
     width: 100%;
     height: 2px;
-    background:  linear-gradient(90deg, transparent, #FF0000);
+    background:  linear-gradient(90deg, transparent,${props => props.start ? "#00FFFF" : " #FF0000"});
     animation: btn-anim1 1s linear infinite;
   }
 
@@ -296,7 +340,7 @@ export const StyledLink = styled.a`
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #FF0000);
+    background: linear-gradient(180deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s;
   }
@@ -316,7 +360,7 @@ export const StyledLink = styled.a`
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #FF0000);
+    background: linear-gradient(270deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s;
   }
@@ -336,7 +380,7 @@ export const StyledLink = styled.a`
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #FF0000);
+    background: linear-gradient(360deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s;
   }
@@ -350,6 +394,4 @@ export const StyledLink = styled.a`
     }
   }
 `;
-
-
 
