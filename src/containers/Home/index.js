@@ -15,9 +15,8 @@ function Home() {
   const navigate = useNavigate();
   const [ pageComics, setPageComics] = useState()
   const [selectedPageComic, setSelectedPageComic] = useState(null);
-  const [ atualComic, setAtualComic] =useState()
   const dispatch = useDispatch();
-  console.log(atualComic)
+
   useEffect(() => {
     async function getComics() {
       const { data } = await api.get('/comics');
@@ -31,7 +30,6 @@ function Home() {
   const handleSelectComic = (comic) => {
     
     setSelectedPageComic(comic);
-    setAtualComic(comic)
   };
 //Adiciona a HQ ao redux
   const handleAddComic = (comic) => {
@@ -72,7 +70,7 @@ function Home() {
 
                 <div className="button-image">
                 <div className="align-button">
-              <StyledLink class="neon-bt" href="#"  onClick={() => setSelectedPageComic(null)}>
+              <StyledLink className="neon-bt" href="#"  onClick={() => setSelectedPageComic(null)}>
             <span></span>
             <span></span>
             <span></span>
@@ -87,10 +85,11 @@ function Home() {
 
               <div className="text-content">
 
-              <p>{selectedPageComic.description}</p>
               <p>ID#{selectedPageComic.id}</p>
 
               <h2>{selectedPageComic.title}</h2>
+
+              <p>Price: ${selectedPageComic.prices[0].price}</p>
 
               
               <StyledLink add={true} onClick={() => handleAddComic(selectedPageComic)}>

@@ -127,38 +127,37 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1;
   color: ${textColor};
-  padding-top: 30px;
+  padding-top: 15px;
 
   .selected-comic {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    max-width: 700px;
+    width: 40%;
+    max-width: 350px;
     height: 100%;
     max-height: 900px;
     margin: 0 auto;
-    overflow-y: auto;
-    padding: 20px;
+    overflow-y: none;
 
     img {
       width: 100%;
       height: auto;
-      max-height: 400px;
+      max-height: 350px;
       border-radius: 10px;
       margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 16px;
       margin-bottom: 10px;
     }
 
     p {
+      color: ${mainColor};
       font-size: 16px;
       line-height: 1.5;
-      margin-bottom: 20px;
       font-weight: 600;
     }
 
@@ -168,6 +167,7 @@ export const Overlay = styled.div`
       align-items: center;
       text-align: center;
       flex-direction: column;
+      width: 55%;
       gap: 10px;
     }
 
@@ -182,7 +182,7 @@ export const Overlay = styled.div`
 
     .button-image {
       width: 100%;
-      max-width: 400px;
+      max-width: 350px;
       height: auto;
       display: flex;
       flex-direction: column;

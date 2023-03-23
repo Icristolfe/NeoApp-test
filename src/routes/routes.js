@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from '../containers/Home'
 import ComicPage from '../containers/ComicPage'
+import PrivateRoute from './private-route'
 
 
 function RoutesApp() {
@@ -10,11 +11,16 @@ function RoutesApp() {
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<Home />} />
-      </Routes>
 
-      <Routes>
-        <Route path={"/comic"} element={<ComicPage />} />
-      </Routes>
+       <Route
+          path={"/comic"}
+          element={
+            <PrivateRoute>
+              <ComicPage />
+            </PrivateRoute>
+          }
+          />
+          </Routes>
     </BrowserRouter>
   )
 }
