@@ -5,6 +5,6 @@ services:
     build: .
     command: yarn start
     ports:
-      - "4000:4000"
+      - "8080:3000"
     volumes:
       - .:/app

@@ -14,9 +14,11 @@ function ComicPage() {
 
   useEffect(() => {
     if (!selected) {
-      navigate("/");
-      return null;
-    }
+        navigate("/");
+        
+      }
+
+    
   }, [navigate, selected]);
 
   return (
