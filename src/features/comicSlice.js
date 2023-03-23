@@ -2,10 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const comicSlice = createSlice({
   name: 'comics',
-  initialState: [],
+  initialState: {
+    list: [],
+    selectedComic: null
+  },
   reducers: {
     setComics: (state, action) => {
-      return action.payload;
+      state.list = action.payload;
     }, 
     setSelectedComic: (state, action) => {
       state.selectedComic = action.payload;
@@ -13,11 +16,5 @@ const comicSlice = createSlice({
   }
 });
 
-export const setSelectedComic = (comic) => ({
-  type: 'comic/setSelectedComic',
-  payload: comic,
-});
-
-
-export const { setComics } = comicSlice.actions;
+export const { setComics, setSelectedComic } = comicSlice.actions;
 export default comicSlice.reducer;
