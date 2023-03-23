@@ -37,10 +37,19 @@ export const Start = styled.div`
   justify-content: flex-start;
   padding-top: 30px;
   z-index: 1;
-  
+  text-align: center;
+
+  @media(max-width: 767px) { /* Mobile */
+  padding: 10%;
+
+      }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  padding: 10%;
+      }
 
   .color {
-    width: 5%;
+    width: 10%;
     height: 40px;
     background: ${rareColor};
     margin-bottom: 50px;
