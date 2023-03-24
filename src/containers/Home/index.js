@@ -83,7 +83,8 @@ function Home() {
         <StyledLink
         start={true}
         size="40px"
-         width="40%"
+        width="40%"
+        justify="center"
         href="#" 
         onClick={() => setStart(null)}>
             <span></span>
@@ -122,7 +123,7 @@ function Home() {
 
                 <div className="button-image">
                 <div className="align-button">
-              <StyledLink className="neon-bt" href="#"  onClick={() => setSelectedPageComic(null)}>
+              <StyledLink href="#"  onClick={() => setSelectedPageComic(null)}>
             <span></span>
             <span></span>
             <span></span>
@@ -147,6 +148,7 @@ function Home() {
               <StyledLink add={true}
               size="40px"
               width="100%"
+              justify="center"
               onClick={() => handleAddComic(selectedPageComic)}>
             <span></span>
             <span></span>

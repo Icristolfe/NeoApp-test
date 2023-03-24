@@ -13,7 +13,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 15px;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
 
 
   .rare-border {
@@ -188,14 +188,14 @@ export const Overlay = styled.div`
     justify-content: flex-start;
     width: 40%;
     max-width: 350px;
-    height: 100%;
+    height: 60%;
     max-height: 900px;
     margin: 0 auto;
     overflow-y: none;
 
     img {
       width: 100%;
-      height: auto;
+      height: 70%;
       max-height: 350px;
       border-radius: 10px;
       margin-bottom: 10px;
@@ -273,21 +273,22 @@ export const StyledLink = styled.a`
   position: relative;
   display: inline-block;
   color:${props => props.start ? "#00FFFF" : " #FF0000"} ;
-  font-size: 16px;
+  font-size: 18px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   transition: 0.2s;
   letter-spacing: 5px;
   font-weight: 900;
-  width: ${(props) => props.width || "25px"};
+  width: ${(props) => props.width || "30px"};
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => props.justify || "none"};
   cursor: pointer;
   margin-top: ${props => (props.add ? "15px" : "0")};
-  height: ${(props) => props.size || "18px"};
+  height: ${(props) => props.size || "15px"};
+  padding: 0 10px;
 
 @media(max-width: 767px) { /* Mobile */
   width: ${props => props.start ? "60%" : "100%"} ;
