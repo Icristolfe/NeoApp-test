@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import api from "../../services/api";
-import { setComics, setSelectedComic } from '../../features/comicSlice';
+import { setComics, setSelectedComic } from '../../features/ComicSlice';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
+import formatDolar from "../../utils/formatDolar";
+import { FaShoppingCart } from 'react-icons/fa';
+
+import { useCart } from "../../features/CartContext";
 
 import StyledLink from '../../components/Button'
 
@@ -19,18 +23,21 @@ import {
 import { Header } from "../../components/Header";
 
 function Home() {
+
   const navigate = useNavigate();
   const [ pageComics, setPageComics] = useState(null)
   const [selectedPageComic, setSelectedPageComic] = useState(null);
   const dispatch = useDispatch();
+  const { putProductInCart } = useCart();
 
   
   useEffect(() => {
-    function formatDolar(number) {
-      return number.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-    }
+    
+
     async function getComics() {
       const { data } = await api.get('/comics');
+
+     
       
       // Adiciona a propriedade "rare" aleatoriamente a dois comics
       const rareIndices = [];
@@ -44,16 +51,19 @@ function Home() {
 
       const rareComics = data.data.results.map((comic, index) => {
         const priceWithRandom = comic.prices[0].price + Math.floor(Math.random() * 91) + 10; // número aleatório entre 10 e 100
+
         if (rareIndices.includes(index)) {
-          return { ...comic, rare: true, FinalPrice:  formatDolar( priceWithRandom) };
+
+          return { ...comic, rare: true, FinalPrice: priceWithRandom };
         } else {
-          return { ...comic, FinalPrice: formatDolar( priceWithRandom) };
+          return { ...comic, FinalPrice: priceWithRandom };
         }
       });
 
       
       // Atualiza o estado do componente com os resultados modificados
       dispatch(setComics(rareComics));
+      
       setPageComics(rareComics);
 
     }
@@ -74,7 +84,15 @@ function Home() {
   }
 
 
- 
+  const handleAddToCart = (e, comic) => {
+    e.preventDefault();
+    const product = { ...comic, quantity: 0 };
+
+    putProductInCart(product);
+
+    
+  };
+   
 
   return (
     <div>
@@ -86,11 +104,14 @@ function Home() {
                 { pageComics&&
                 pageComics.map(comic => (
 
-                  <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
+                  <ContainerCard key={comic.id}
+                  className={comic.rare ? 'rare-border' : ''}
+                  rare={comic.rare} >
           
                   <div className="thumbnail">
               
-                  <img
+                  <img 
+                  onClick={() => handleSelectComic(comic)}
                   src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title}
                   />
           
@@ -100,8 +121,21 @@ function Home() {
               
                 <h2>{comic.title}</h2>
           
-                <h3>Price: {comic.FinalPrice}</h3>
+                <h3>Price: {formatDolar(comic.FinalPrice)}</h3>
+                 <StyledLink
+              rare={comic.rare}
+              size="40px"
+              width="40%"
+              justify="center"
+              href="#" 
+              onClick={ (e) => handleAddToCart(e,comic)}>
+                <>
+                  <FaShoppingCart />
+                </>
+            </StyledLink>
                 </div>
+
+          
                 </ContainerCard>
                 ))
         }
@@ -147,7 +181,7 @@ function Home() {
 
               <h2>{selectedPageComic.title}</h2>
 
-              <p>Price: {selectedPageComic.FinalPrice}</p>
+              <p>Price: {formatDolar(selectedPageComic.FinalPrice)}</p>
 
               
               <StyledLink add={true}

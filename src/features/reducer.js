@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import comicsReducer from './comicSlice';
+import comicsReducer from './ComicSlice';
 
 const store = configureStore({
   reducer: {

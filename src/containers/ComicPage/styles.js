@@ -106,13 +106,13 @@ export const ContainerItems = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    width: 100vw;
+    width: 60vw;
     height: 100vh;
     align-items: center;
 
     @media(max-width: 480px) { /* Mobile */
-    width: 90%;
-    max-width: 90%;
+    width: 60vw;
+    max-width: 60vh;
     max-height: none;
     flex-direction: row;
     overflow-x: none;

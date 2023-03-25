@@ -10,8 +10,8 @@ export const Container = styled.div`
   background-size: cover;
   color: ${textColor};
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -20,96 +20,84 @@ export const Container = styled.div`
   border: 2px solid ${rareColor};
   box-shadow: 0 0 20px 0 ${rareColor};
 }
-
-  .align-title {
-    width: 60%;
-
-    @media(max-width: 768px) {
-      width: 60%;
-    }
-
-    @media(max-width: 480px) {
-      width: 60%;
-    }
-  }
-
-  .align-desc {
-    width: 65%;
-    margin: 30px 0 ;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-    font-size: 14px;
-
-    @media(max-width: 768px) {
-      width: 40%;
-    }
-
-    @media(max-width: 480px) {
-      width: 40%;
-    }
-  }
-
-  h1 {
-    font-size: 20px;
-    margin-bottom: 30px ;
-    color: ${textColor};
-    text-align: center;
-
-    @media(max-width: 480px) {
-      font-size: 16px;
-    }
-  }
-
-  img {
-    width: 300px;
-    height: 300px;
-    border-radius: 8px;
-
-    @media(max-width: 768px) {
-      width: 60%;
-      height: auto;
-    }
-
-    @media(max-width: 480px) {
-      width: 60%;
-    }
-  }
-
-  .button-container {
-    width: 50%;
-    height: 30%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-
-    @media(max-width: 768px) {
-      width: 80%;
-    }
-
-    @media(max-width: 480px) {
-      width: 90%;
-    }
-  }
+  
 `
 
 export const ContainerItems = styled.div`
-    background: ${secondaryColor};
+  background: ${secondaryColor};
+  padding: 30px;
+  width: 60vw;
+  align-items: center;
+  display: grid;
+  grid-template-areas: 
+    "header"
+    "content";
+  grid-gap: 10px;
+
+  h1 {
+    color: ${textColor};
+  }
+
+`
+
+
+export const CartContainer = styled.div`
+  background: ${secondaryColor};
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 10px;
+  grid-gap: 10px 15px;
+  border-bottom: 1px solid #b5b5b5;
+  text-align: center;
+
+
+  .quantity-container {
     display: flex;
-    flex-direction: column;
-    padding: 30px;
-    width: 100vw;
-    height: 100vh;
     align-items: center;
+    justify-content: center;
 
-    @media(max-width: 768px) {
-      padding: 20px;
+    button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: ${textColor} ;
+    cursor: pointer;
     }
 
-    @media(max-width: 480px) {
-      padding: 10px;
+    button:hover {
+      opacity: 0.9
     }
+
+    button:active {
+      opacity: 0.6
+}
+  }
+
+
+
+`
+
+export const Header = styled.div`
+  padding: 10px;
+  border-bottom: 1px solid #b5b5b5;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  text-align: center;
+
+  p {
+    font-size: 16px;
+    color: ${textColor} ;
+  }
+`
+
+export const EmptyCart = styled.p`
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
 `

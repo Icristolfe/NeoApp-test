@@ -3,30 +3,38 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSelectedComic } from "../../features/ComicSlice";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaShoppingCart } from 'react-icons/fa';
-import formatDolar from "../../utils/formatDolar";
+import { addToCart } from '../../features/cartSlice';
 
-import {
-  Container,
-  ContainerItems,
-  ContainerContent,
-  ContainerBotom
-} from './styles'
+
+import { Container, ContainerItems } from './styles'
 
 import StyledLink from '../../components/Button'
-import { Header } from "../../components/Header";
-
-import { useCart } from "../../features/CartContext";
 
 function ComicPage() {
   const selected = useSelector(state => state.comics.selectedComic);
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
-  const { putProductInCart } = useCart();
+  const cart = useSelector(state => state.cart);
+
+
 
   const handleAddToCart = () => {
-   
-    const product = { ...selected, quantity: 0 };
-    putProductInCart(product);
+    if (!cart) {
+      return;
+    }
+    
+    const existingItem = cart.find(item => item.id === selected.id);
+  
+    // se o comic já existe, aumenta a quantidade em 1
+    if (existingItem) {
+      dispatch(addToCart({ id: selected.id, quantity: existingItem.quantity + 1 }));
+  
+    // se o comic não existe, adiciona-o ao carrinho com quantidade 1
+    } else {
+      dispatch(addToCart({ ...selected, quantity: 1 }));
+    }
+
+    
   };
   
   
@@ -34,28 +42,15 @@ function ComicPage() {
     if (!selected) {
       navigate("/");
     }
-    const cartData = localStorage.getItem('cart');
-    try {
-      if (cartData) {
-       
-      }
-    } catch (error) {
-      console.log("Erro ao fazer o parsing do JSON: ", error);
-    }
   }, [navigate, selected]);
+  
 
-  
-  
   return (
     <Container>
-      <Header />
       {selected && (
         <ContainerItems>
-
-          <ContainerContent>
-
           <div className="align-title">
-            <h1>{selected.title}</h1>
+                <h1>{selected.title}</h1>
           </div>
 
           <img
@@ -64,17 +59,13 @@ function ComicPage() {
             alt={selected.title}
           />
 
-          </ContainerContent>
-
-          <ContainerBotom>
-
           <div className="align-desc">
-            {selected.rare ? (<p className={selected.rare ? 'rare-border' : ''}>Rare Comic</p>) : (<p></p>)}
+                <p>{selected.description.slice(0, 250) + "..."}</p>
 
-            {selected.description ? ( <p>{ selected.description.slice(0, 250) + "..." }</p> ) : (<p>no description available</p>) }
-
-            <h2>Price: {formatDolar(selected.FinalPrice)}</h2>
+                <h2>Price: ${selected.prices[0].price}</h2>
           </div>
+
+          
 
           <div className="button-container">
 
@@ -88,7 +79,11 @@ function ComicPage() {
                 navigate('/');
               }}>
                 <>
-                  <FaArrowLeft />
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <FaArrowLeft />
                 </>
             </StyledLink>
 
@@ -98,14 +93,17 @@ function ComicPage() {
               width="40%"
               justify="center"
               href="#" 
-              onClick={handleAddToCart}>
+              onClick={handleAddToCart()}>
                 <>
-                  <FaShoppingCart />
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <FaShoppingCart />
                 </>
             </StyledLink>
 
           </div>
-          </ContainerBotom>
 
         </ContainerItems>
       )}

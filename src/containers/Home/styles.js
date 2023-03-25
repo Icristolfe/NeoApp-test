@@ -11,7 +11,8 @@ const lightTextColor = "#CCCCCC";
 export const Container = styled.div`
   background: ${secondaryColor};
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
+  z-index: 1;
   
 
 
@@ -46,7 +47,7 @@ export const ContainerCard = styled.div`
   margin-bottom: 20px;
 
   &:hover {
-    box-shadow: 0 0 20px 0 #FF0000;
+    box-shadow: 0 0 20px 0 ${props => props.rare ? "#00FFFF" : "#FF0000"};
   }
 
   .thumbnail {
@@ -152,10 +153,9 @@ export const Overlay = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    height: 90%;
+    width: 30vw;
+    height: 60vh;
     max-height: 900px;
-    margin: 0 auto;
     overflow: none;
     border-radius: 30%;
     margin-top: 20px;

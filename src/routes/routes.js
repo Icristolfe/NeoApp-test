@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from '../containers/Home'
 import ComicPage from '../containers/ComicPage'
-import PrivateRoute from './private-route'
 import Cart from '../containers/Cart'
+import PrivateRoute from './private-route'
 
 
 function RoutesApp() {

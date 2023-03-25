@@ -16,5 +16,6 @@ const comicSlice = createSlice({
   }
 });
 
+
 export const { setComics, setSelectedComic } = comicSlice.actions;
 export default comicSlice.reducer;

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ButtonLink = styled.a`
   position: relative;
   display: inline-block;
-  color:${props => props.start ? "#00FFFF" : " #FF0000"} ;
+  color:  ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"} ;
   font-size: 18px;
   text-decoration: none;
   text-transform: uppercase;
@@ -35,14 +35,14 @@ export const ButtonLink = styled.a`
     
   &:hover {
     opacity:0.8;
-    background: ${props => props.start ? "#00FFFF" : " #FF0000"};
+    background: ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"} ;
     color:${props => props.start ? "#000" : " #FFF"};
     border-radius: 5px;
     box-shadow:
-    0 0 5px ${props => props.start ? "#00FFFF" : " #FF0000"},
-    0 0 25px ${props => props.start ? "#00FFFF" : " #FF0000"},
-    0 0 50px ${props => props.start ? "#00FFFF" : " #FF0000"},
-    0 0 100px ${props => props.start ? "#00FFFF" : " #FF0000"};
+    0 0 5px  ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"},
+    0 0 25px  ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"},
+    0 0 50px  ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"},
+    0 0 100px  ${props => props.start ||props.rare ? "#00FFFF" : " #FF0000"};
     
   }
 
