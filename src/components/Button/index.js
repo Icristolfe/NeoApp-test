@@ -8,7 +8,7 @@ function StyledLink({ children, ...rest }) {
 }
 
 StyledLink.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.any
 }
 
 export  default StyledLink

@@ -81,6 +81,7 @@ function Home() {
             <div className="content">
               
               <h2>{comic.title}</h2>
+
               <h3>Price: ${comic.prices[0].price}</h3>
             </div>
           </ContainerCard>
@@ -95,20 +96,18 @@ function Home() {
               transition={{ duration: 0.5 }}
             >
 
-              
-
                 <div className="button-image">
                 <div className="align-button">
               <StyledLink
                 href="#"
-                onClick={() => setSelectedPageComic(null)}
                 justify="center"
+                onClick={() => setSelectedPageComic(null)}
                 >
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-              X
+              x
             </StyledLink>
 
               </div>
@@ -125,7 +124,8 @@ function Home() {
               <p>Price: ${selectedPageComic.prices[0].price}</p>
 
               
-              <StyledLink add={true}
+              <StyledLink
+              add={true}
               size="40px"
               width="100%"
               justify="center"

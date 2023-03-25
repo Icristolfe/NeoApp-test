@@ -34,7 +34,7 @@ function ComicPage() {
       dispatch(addToCart({ ...selected, quantity: 1 }));
     }
 
-    console.log(cart)
+    
   };
   
   
@@ -60,9 +60,9 @@ function ComicPage() {
           />
 
           <div className="align-desc">
-              {selected.description ? ( <p>{ selected.description.slice(0, 250) + "..." }</p> ) : (<p>no description available</p>) }
+                <p>{selected.description.slice(0, 250) + "..."}</p>
 
-              <h2>Price: ${selected.prices[0].price}</h2>
+                <h2>Price: ${selected.prices[0].price}</h2>
           </div>
 
           

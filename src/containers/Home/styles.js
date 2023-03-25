@@ -13,7 +13,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 15px;
-  padding: 20px;
 
 
   .rare-border {
@@ -132,12 +131,14 @@ export const Overlay = styled.div`
   align-items: center;
   justify-content: flex-start;
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1;
   color: ${textColor};
   padding-top: 15px;
+   backdrop-filter: blur(10px);
+  opacity: 0.9;
 
   .selected-comic {
     display: flex;
