@@ -11,25 +11,25 @@ export const ButtonLink = styled.a`
   transition: 0.2s;
   letter-spacing: 5px;
   font-weight: 900;
-  width: ${(props) => props.width || "100%"};
+  width: ${(props) => props.width || "40%"};
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: ${(props) => props.justify || "none"};
   cursor: pointer;
   margin-top: ${props => (props.add ? "15px" : "0")};
-  height: ${(props) => props.size || "40px"};
+  height: ${(props) => props.size || "10px"};
   padding: 0 10px;
   margin: 0 auto;
 
 @media(max-width: 767px) { /* Mobile */
-  width: ${props => props.start ? "60%" : "60%"} ;
+  
   height: 50px;
 
       }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  width: 100%;
+  
   height: 50px;
       }
     

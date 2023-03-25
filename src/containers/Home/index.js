@@ -18,7 +18,7 @@ import { Header } from "../../components/Header";
 
 function Home() {
   const navigate = useNavigate();
-  const [ pageComics, setPageComics] = useState()
+  const [ pageComics, setPageComics] = useState(null)
   const [selectedPageComic, setSelectedPageComic] = useState(null);
   const dispatch = useDispatch();
 
@@ -79,28 +79,30 @@ function Home() {
       <Container>
         
           <Header />
+
         <ContainerItems >
-                { pageComics &&
-         pageComics.map(comic => (
+                { pageComics&&
+                pageComics.map(comic => (
 
-          <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
-
-            <div className="thumbnail">
+                  <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
+          
+                  <div className="thumbnail">
               
-              <img
-              src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title}
-              />
-
-            </div>
-
-            <div className="content">
+                  <img
+                  src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title}
+                  />
+          
+                </div>
+          
+                <div className="content">
               
-              <h2>{comic.title}</h2>
-
-              <h3>Price: {comic.FinalPrice}</h3>
-            </div>
-          </ContainerCard>
-        ))}
+                <h2>{comic.title}</h2>
+          
+                <h3>Price: {comic.FinalPrice}</h3>
+                </div>
+                </ContainerCard>
+                ))
+        }
 
           </ContainerItems>
         {selectedPageComic && (
@@ -114,18 +116,16 @@ function Home() {
             >
 
                 <div className="button-image">
-                  
+
                 <div className="align-button">
               <StyledLink
                 href="#"
+                width="100%"
+                size="40px"
                 justify="center"
                 onClick={() => setSelectedPageComic(null)}
                 >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-              x
+                  x
             </StyledLink>
 
               </div>
@@ -144,14 +144,9 @@ function Home() {
               
               <StyledLink add={true}
               size="40px"
-              width="100%"
               justify="center"
               onClick={() => handleAddComic(selectedPageComic)}>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Ver Mais
+                Ver Mais
             </StyledLink>
 
             </div>

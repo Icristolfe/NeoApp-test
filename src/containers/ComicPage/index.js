@@ -4,7 +4,12 @@ import { setSelectedComic } from "../../features/comicSlice";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaShoppingCart } from 'react-icons/fa';
 
-import { Container, ContainerItems } from './styles'
+import {
+  Container,
+  ContainerItems,
+  ContainerContent,
+  ContainerBotom
+} from './styles'
 
 import StyledLink from '../../components/Button'
 import { Header } from "../../components/Header";
@@ -61,7 +66,7 @@ function ComicPage() {
       {selected && (
         <ContainerItems>
 
-          
+          <ContainerContent>
 
           <div className="align-title">
             <h1>{selected.title}</h1>
@@ -72,6 +77,10 @@ function ComicPage() {
             src={selected.thumbnail.path + "." + selected.thumbnail.extension}
             alt={selected.title}
           />
+
+          </ContainerContent>
+
+          <ContainerBotom>
 
           <div className="align-desc">
             {selected.rare ? (<p className={selected.rare ? 'rare-border' : ''}>Rare Comic</p>) : (<p></p>)}
@@ -93,10 +102,6 @@ function ComicPage() {
                 navigate('/');
               }}>
                 <>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
                   <FaArrowLeft />
                 </>
             </StyledLink>
@@ -109,15 +114,12 @@ function ComicPage() {
               href="#" 
               onClick={handleAddToCart}>
                 <>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
                   <FaShoppingCart />
                 </>
             </StyledLink>
 
           </div>
+          </ContainerBotom>
 
         </ContainerItems>
       )}

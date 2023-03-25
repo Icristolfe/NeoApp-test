@@ -11,7 +11,7 @@ const lightTextColor = "#CCCCCC";
 export const Container = styled.div`
   background: ${secondaryColor};
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
   
 
 
@@ -39,7 +39,6 @@ export const ContainerCard = styled.div`
   background-color: ${secondaryColor};
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   color: ${lightTextColor};
   gap: 35px;
@@ -147,24 +146,33 @@ export const Overlay = styled.div`
   z-index: 1;
   color: ${textColor};
   padding-top: 15px;
-   backdrop-filter: blur(10px);
-  opacity: 0.9;
 
   .selected-comic {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 40%;
-    max-width: 350px;
-    height: 70%;
+    width: 100%;
+    height: 90%;
     max-height: 900px;
     margin: 0 auto;
-    overflow-y: none;
+    overflow: none;
+    border-radius: 30%;
+    margin-top: 20px;
+ @media(max-width: 480px) { /* Mobile */
+    
+        width: 90%;
+        max-width: 90%;
+        max-height: none;
+        flex-direction: row;
+        overflow-x: none;
+      
+    }
+   
 
     img {
       width: 100%;
-      height: 70%;
+      height: 100%;
       max-height: 350px;
       border-radius: 10px;
       margin-bottom: 10px;
@@ -189,8 +197,15 @@ export const Overlay = styled.div`
       text-align: center;
       flex-direction: column;
       width: 100%;
-      height: 50%;
+      height: 70%;
       gap: 10px;
+    
+      @media(max-width: 480px) { /* Mobile */
+      
+      justify-content: flex-end
+}
+
+
     }
 
     .align-button {
@@ -213,7 +228,7 @@ export const Overlay = styled.div`
 
     @media(max-width: 767px) { /* Mobile */
       .selected-comic {
-        width: 90%;
+        width: 100%;
         max-width: 90%;
         max-height: none;
       }
@@ -235,4 +250,3 @@ export const Overlay = styled.div`
     }
   }
 `;
-

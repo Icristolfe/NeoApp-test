@@ -15,6 +15,8 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
+  
+
   .rare-border {
   border: 2px solid ${rareColor};
   box-shadow: 0 0 20px 0 ${rareColor};
@@ -82,11 +84,12 @@ export const Container = styled.div`
 
   .button-container {
     width: 50%;
-    height: 15%;
+    height: 30%;
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: center;
+    overflow-y: hidden ;
 
     @media(max-width: 768px) {
       width: 80%;
@@ -107,6 +110,15 @@ export const ContainerItems = styled.div`
     height: 100vh;
     align-items: center;
 
+    @media(max-width: 480px) { /* Mobile */
+    width: 90%;
+    max-width: 90%;
+    max-height: none;
+    flex-direction: row;
+    overflow-x: none;
+  
+}
+
     @media(max-width: 768px) {
       padding: 20px;
     }
@@ -114,4 +126,21 @@ export const ContainerItems = styled.div`
     @media(max-width: 480px) {
       padding: 10px;
     }
+`
+
+export const ContainerContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin: 0 auto;
+    
+`
+
+export const ContainerBotom = styled.div`
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    
 `
