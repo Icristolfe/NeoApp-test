@@ -10,7 +10,7 @@ import { Container, ContainerItems } from './styles'
 
 import StyledLink from '../../components/Button'
 
-function ComicPage() {
+function Cart() {
   const selected = useSelector(state => state.comics.selectedComic);
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
@@ -111,4 +111,4 @@ function ComicPage() {
   );
 }
 
-export default ComicPage;
+export default Cart;

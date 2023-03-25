@@ -10,8 +10,11 @@ import StyledLink from '../../components/Button'
 import {
   Container,
   ContainerCard,
-  Overlay
+  Overlay,
+  ContainerItems
 } from './styles';
+
+import { Header } from "../../components/Header";
 
 function Home() {
   const navigate = useNavigate();
@@ -74,10 +77,14 @@ function Home() {
   return (
     <div>
       <Container>
-     
-        { pageComics &&
+        
+          <Header />
+        <ContainerItems >
+                { pageComics &&
          pageComics.map(comic => (
+
           <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
+
             <div className="thumbnail">
               
               <img
@@ -94,6 +101,8 @@ function Home() {
             </div>
           </ContainerCard>
         ))}
+
+          </ContainerItems>
         {selectedPageComic && (
           <Overlay>
             <motion.div 
@@ -105,6 +114,7 @@ function Home() {
             >
 
                 <div className="button-image">
+                  
                 <div className="align-button">
               <StyledLink
                 href="#"
@@ -148,6 +158,8 @@ function Home() {
             </motion.div>
           </Overlay>
         )}
+
+
       </Container>
     </div>
   );

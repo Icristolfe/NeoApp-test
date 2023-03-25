@@ -7,6 +7,7 @@ import { FaArrowLeft, FaShoppingCart } from 'react-icons/fa';
 import { Container, ContainerItems } from './styles'
 
 import StyledLink from '../../components/Button'
+import { Header } from "../../components/Header";
 
 function ComicPage() {
   const selected = useSelector(state => state.comics.selectedComic);
@@ -56,8 +57,12 @@ function ComicPage() {
   
   return (
     <Container>
+      <Header />
       {selected && (
         <ContainerItems>
+
+          
+
           <div className="align-title">
             <h1>{selected.title}</h1>
           </div>

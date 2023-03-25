@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '../containers/Home'
 import ComicPage from '../containers/ComicPage'
 import PrivateRoute from './private-route'
+import Cart from '../containers/Cart'
 
 
 function RoutesApp() {
@@ -12,6 +13,8 @@ function RoutesApp() {
       <Routes>
         <Route path={"/"} element={<Home />} />
 
+        <Route path={"/carrinho"} element={<Cart />} />
+        
        <Route
           path={"/comic"}
           element={

@@ -10,10 +10,9 @@ const lightTextColor = "#CCCCCC";
 
 export const Container = styled.div`
   background: ${secondaryColor};
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  grid-gap: 15px;
-  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  
 
 
   .rare-border {
@@ -22,6 +21,15 @@ export const Container = styled.div`
 }
   
 `;
+
+export const ContainerItems = styled.div`
+  background: ${secondaryColor};
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-gap: 25px;
+  padding: 20px;
+   
+`
 
 
 export const ContainerCard = styled.div`
@@ -36,6 +44,7 @@ export const ContainerCard = styled.div`
   color: ${lightTextColor};
   gap: 35px;
   transition: box-shadow 0.2s ease-in-out;
+  margin-bottom: 20px;
 
   &:hover {
     box-shadow: 0 0 20px 0 #FF0000;
@@ -49,8 +58,8 @@ export const ContainerCard = styled.div`
     position: relative;
 
     img {
-      max-height: 100%;
-      max-width: 100%;
+      max-height: 80%;
+      max-width: 80%;
       transition: transform 0.2s ease-in-out;
     }
 
@@ -148,7 +157,7 @@ export const Overlay = styled.div`
     justify-content: flex-start;
     width: 40%;
     max-width: 350px;
-    height: 60%;
+    height: 70%;
     max-height: 900px;
     margin: 0 auto;
     overflow-y: none;
@@ -180,6 +189,7 @@ export const Overlay = styled.div`
       text-align: center;
       flex-direction: column;
       width: 100%;
+      height: 50%;
       gap: 10px;
     }
 
@@ -193,7 +203,6 @@ export const Overlay = styled.div`
     }
 
     .button-image {
-      width: 100%;
       max-width: 350px;
       height: auto;
       display: flex;

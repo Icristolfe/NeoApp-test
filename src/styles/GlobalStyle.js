@@ -7,6 +7,8 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     outline: none;
+    overflow-x: hidden;
+    
 
     &::-webkit-scrollbar{
         width: 10px;

@@ -14,7 +14,6 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
 
   .rare-border {
   border: 2px solid ${rareColor};
