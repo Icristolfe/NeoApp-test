@@ -11,7 +11,9 @@ import {
   Container,
   ContainerCard,
   Overlay,
-  ContainerItems
+  ContainerItems,
+  OverlayTop,
+  OverlayBottom
 } from './styles';
 
 import { Header } from "../../components/Header";
@@ -115,6 +117,8 @@ function Home() {
               transition={{ duration: 0.5 }}
             >
 
+            <OverlayTop>
+
                 <div className="button-image">
 
                 <div className="align-button">
@@ -133,6 +137,10 @@ function Home() {
               <img src={selectedPageComic.thumbnail.path + '.' + selectedPageComic.thumbnail.extension} alt={selectedPageComic.title} />
               </div>
 
+              </OverlayTop>
+              
+              <OverlayBottom>
+
               <div className="text-content">
 
               <p>ID#{selectedPageComic.id}</p>
@@ -144,13 +152,18 @@ function Home() {
               
               <StyledLink add={true}
               size="40px"
+              width="100%"
               justify="center"
               onClick={() => handleAddComic(selectedPageComic)}>
                 Ver Mais
             </StyledLink>
-
+              
             </div>
+
+            </OverlayBottom>
+
             </motion.div>
+
           </Overlay>
         )}
 
