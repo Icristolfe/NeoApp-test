@@ -19,6 +19,8 @@ export const Container = styled.div`
   .rare-border {
   border: 2px solid ${rareColor};
   box-shadow: 0 0 20px 0 ${rareColor};
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
   .align-title {
@@ -35,11 +37,11 @@ export const Container = styled.div`
 
   .align-desc {
     width: 65%;
-    margin: 30px 0 ;
+    margin: 10px 0 ;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     text-align: center;
     font-size: 14px;
 
@@ -64,23 +66,24 @@ export const Container = styled.div`
   }
 
   img {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 8px;
 
     @media(max-width: 768px) {
-      width: 60%;
-      height: auto;
+      width: 200px;
+    height: 200px;
     }
 
     @media(max-width: 480px) {
-      width: 60%;
+      width: 150px;
+    height: 150px;;
     }
   }
 
   .button-container {
     width: 50%;
-    height: 30%;
+    height: 15%;
     display: flex;
     gap: 10px;
     align-items: center;

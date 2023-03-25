@@ -11,8 +11,9 @@ const lightTextColor = "#CCCCCC";
 export const Container = styled.div`
   background: ${secondaryColor};
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 15px;
+  padding: 0 10px;
 
 
   .rare-border {

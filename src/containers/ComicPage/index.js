@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedComic } from "../../features/comicSlice";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaShoppingCart } from 'react-icons/fa';
-import { addToCart } from '../../features/cartSlice';
-
 
 import { Container, ContainerItems } from './styles'
 
@@ -14,27 +12,29 @@ function ComicPage() {
   const selected = useSelector(state => state.comics.selectedComic);
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
-  const cart = useSelector(state => state.cart);
-
-
+  const [cart, setCart] = useState([]);
 
   const handleAddToCart = () => {
-    if (!cart) {
-      return;
-    }
-    
-    const existingItem = cart.find(item => item.id === selected.id);
+    const existingCartItemIndex = cart.findIndex((item) => item.id === selected.id);
   
-    // se o comic já existe, aumenta a quantidade em 1
-    if (existingItem) {
-      dispatch(addToCart({ id: selected.id, quantity: existingItem.quantity + 1 }));
-  
-    // se o comic não existe, adiciona-o ao carrinho com quantidade 1
-    } else {
-      dispatch(addToCart({ ...selected, quantity: 1 }));
-    }
+    if (existingCartItemIndex !== -1) {
 
-    console.log(cart)
+      const updatedCart = [...cart];
+
+      updatedCart[existingCartItemIndex].quantity += 1;
+
+      setCart(updatedCart);
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    }
+    else {
+      const updatedCart = [...cart, { ...selected, quantity: 1 }];
+
+      setCart(updatedCart);
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
   };
   
   
@@ -42,15 +42,24 @@ function ComicPage() {
     if (!selected) {
       navigate("/");
     }
+    const cartData = localStorage.getItem('cart');
+    try {
+      if (cartData) {
+        setCart(JSON.parse(cartData));
+      }
+    } catch (error) {
+      console.log("Erro ao fazer o parsing do JSON: ", error);
+    }
   }, [navigate, selected]);
-  
 
+  
+  
   return (
     <Container>
       {selected && (
         <ContainerItems>
           <div className="align-title">
-                <h1>{selected.title}</h1>
+            <h1>{selected.title}</h1>
           </div>
 
           <img
@@ -60,12 +69,12 @@ function ComicPage() {
           />
 
           <div className="align-desc">
-              {selected.description ? ( <p>{ selected.description.slice(0, 250) + "..." }</p> ) : (<p>no description available</p>) }
+            {selected.rare ? (<p className={selected.rare ? 'rare-border' : ''}>Rare Comic</p>) : (<p></p>)}
 
-              <h2>Price: ${selected.prices[0].price}</h2>
+            {selected.description ? ( <p>{ selected.description.slice(0, 250) + "..." }</p> ) : (<p>no description available</p>) }
+
+            <h2>Price: {selected.FinalPrice}</h2>
           </div>
-
-          
 
           <div className="button-container">
 
@@ -79,11 +88,11 @@ function ComicPage() {
                 navigate('/');
               }}>
                 <>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <FaArrowLeft />
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <FaArrowLeft />
                 </>
             </StyledLink>
 
@@ -93,13 +102,13 @@ function ComicPage() {
               width="40%"
               justify="center"
               href="#" 
-              onClick={handleAddToCart()}>
+              onClick={handleAddToCart}>
                 <>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <FaShoppingCart />
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <FaShoppingCart />
                 </>
             </StyledLink>
 

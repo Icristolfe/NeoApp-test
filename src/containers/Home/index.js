@@ -21,7 +21,9 @@ function Home() {
 
   
   useEffect(() => {
-    
+    function formatDolar(number) {
+      return number.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+    }
     async function getComics() {
       const { data } = await api.get('/comics');
       
@@ -34,11 +36,13 @@ function Home() {
           rareIndices.push(index);
         }
       }
+
       const rareComics = data.data.results.map((comic, index) => {
+        const priceWithRandom = comic.prices[0].price + Math.floor(Math.random() * 91) + 10; // número aleatório entre 10 e 100
         if (rareIndices.includes(index)) {
-          return { ...comic, rare: true };
+          return { ...comic, rare: true, FinalPrice:  formatDolar( priceWithRandom) };
         } else {
-          return comic;
+          return { ...comic, FinalPrice: formatDolar( priceWithRandom) };
         }
       });
 
@@ -64,7 +68,7 @@ function Home() {
     navigate('/comic')
   }
 
-  
+
  
 
   return (
@@ -76,13 +80,17 @@ function Home() {
           <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
             <div className="thumbnail">
               
-              <img src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title} />
+              <img
+              src={comic.thumbnail.path + '.' + comic.thumbnail.extension} alt={comic.title}
+              />
+
             </div>
+
             <div className="content">
               
               <h2>{comic.title}</h2>
 
-              <h3>Price: ${comic.prices[0].price}</h3>
+              <h3>Price: {comic.FinalPrice}</h3>
             </div>
           </ContainerCard>
         ))}
@@ -121,11 +129,10 @@ function Home() {
 
               <h2>{selectedPageComic.title}</h2>
 
-              <p>Price: ${selectedPageComic.prices[0].price}</p>
+              <p>Price: {selectedPageComic.FinalPrice}</p>
 
               
-              <StyledLink
-              add={true}
+              <StyledLink add={true}
               size="40px"
               width="100%"
               justify="center"
