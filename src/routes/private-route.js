@@ -7,7 +7,7 @@ function PrivateRoute({ children, ...rest }) {
 
 
   const selected = useSelector(state => state.comics.selectedComic);
-  console.log(selected)
+
   
   if (!selected) {
     return <Navigate replace to="/" />
