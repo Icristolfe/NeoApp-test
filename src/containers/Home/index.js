@@ -124,7 +124,7 @@ function Home() {
                 <div className="align-button">
               <StyledLink
                 href="#"
-                width="100%"
+                width="50%"
                 size="40px"
                 justify="center"
                 onClick={() => setSelectedPageComic(null)}
@@ -152,7 +152,7 @@ function Home() {
               
               <StyledLink add={true}
               size="40px"
-              width="100%"
+              width="300px"
               justify="center"
               onClick={() => handleAddComic(selectedPageComic)}>
                 Ver Mais

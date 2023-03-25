@@ -119,8 +119,8 @@ export const ContainerItems = styled.div`
   
 }
 
-    @media(max-width: 768px) {
-      padding: 20px;
+    @media(max-height: 768px) {
+      flex-direction: row;  
     }
 
     @media(max-width: 480px) {
