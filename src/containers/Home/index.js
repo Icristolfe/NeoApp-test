@@ -2,23 +2,22 @@ import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 import { setComics, setSelectedComic } from '../../features/comicSlice';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
+
+import StyledLink from '../../components/Button'
 
 import {
   Container,
   ContainerCard,
-  Overlay,
-  StyledLink,
-  Start
+  Overlay
 } from './styles';
-import { motion } from 'framer-motion';
-import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
   const [ pageComics, setPageComics] = useState()
   const [selectedPageComic, setSelectedPageComic] = useState(null);
   const dispatch = useDispatch();
-  const [start, setStart] = useState(true);
 
   
   useEffect(() => {
@@ -28,6 +27,7 @@ function Home() {
       
       // Adiciona a propriedade "rare" aleatoriamente a dois comics
       const rareIndices = [];
+
       while (rareIndices.length < 2) {
         const index = Math.floor(Math.random() * data.data.results.length);
         if (!rareIndices.includes(index)) {
@@ -70,31 +70,7 @@ function Home() {
   return (
     <div>
       <Container>
-      {
-      start&&
-      <Start>
-        <h1>HQ's App</h1>
-
-        <div>
-
-        </div>
-        <p>Cupons raros são marcados com a cor abaixo</p>
-        <div className="color"></div>
-        <StyledLink
-        start={true}
-        size="40px"
-        width="40%"
-        justify="center"
-        href="#" 
-        onClick={() => setStart(null)}>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-              Fechar
-            </StyledLink>
-      </Start>
-}
+     
         { pageComics &&
          pageComics.map(comic => (
           <ContainerCard key={comic.id} onClick={() => handleSelectComic(comic)} className={comic.rare ? 'rare-border' : ''} >
@@ -123,7 +99,11 @@ function Home() {
 
                 <div className="button-image">
                 <div className="align-button">
-              <StyledLink href="#"  onClick={() => setSelectedPageComic(null)}>
+              <StyledLink
+                href="#"
+                onClick={() => setSelectedPageComic(null)}
+                justify="center"
+                >
             <span></span>
             <span></span>
             <span></span>
@@ -154,7 +134,7 @@ function Home() {
             <span></span>
             <span></span>
             <span></span>
-            Adicionar
+            Ver Mais
             </StyledLink>
 
             </div>

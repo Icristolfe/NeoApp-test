@@ -1,129 +1,137 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-
-
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-`;
-
-export const ContainerCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 4px;
+export const ButtonLink = styled.a`
+  position: relative;
+  display: inline-block;
+  color:${props => props.start ? "#00FFFF" : " #FF0000"} ;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
+  transition: 0.2s;
+  letter-spacing: 5px;
+  font-weight: 900;
+  width: ${(props) => props.width || "30px"};
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => props.justify || "none"};
   cursor: pointer;
+  margin-top: ${props => (props.add ? "15px" : "0")};
+  height: ${(props) => props.size || "15px"};
+  padding: 0 10px;
 
+@media(max-width: 767px) { /* Mobile */
+  width: ${props => props.start ? "60%" : "100%"} ;
+  height: 50px;
+
+      }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  width: 100%;
+  height: 50px;
+      }
+    
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    opacity:0.8;
+    background: ${props => props.start ? "#00FFFF" : " #FF0000"};
+    color:${props => props.start ? "#000" : " #FFF"};
+    border-radius: 5px;
+    box-shadow:
+    0 0 5px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 25px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 50px ${props => props.start ? "#00FFFF" : " #FF0000"},
+    0 0 100px ${props => props.start ? "#00FFFF" : " #FF0000"};
+    
   }
 
-  .thumbnail {
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-
-    img {
-      max-height: 100%;
-      max-width: 100%;
-      transition: all 0.2s ease-in-out;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transition: all 0.2s ease-in-out;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-
-    &:hover img {
-      transform: scale(1.05);
-    }
+  &:active{
+    opacity: 0.6;
   }
 
-  .content {
-    padding: 20px;
+  /*animação do span para criar linhas*/
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #333;
-      text-transform: uppercase;
-      font-weight: bold;
+  span {
+    position: absolute;
+    display: block;
+  }
+
+  /*span 1*/
+  span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background:  linear-gradient(90deg, transparent,${props => props.start ? "#00FFFF" : " #FF0000"});
+    animation: btn-anim1 1s linear infinite;
+  }
+
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
     }
-
-    p {
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      color: #666;
-    }
-
-    h3 {
-      font-size: 18px;
-      color: #f00;
-      font-weight: bold;
+    50%,100% {
+      left: 100%;
     }
   }
 
-  @media (max-width: 768px) {
-    .thumbnail {
-      height: 200px;
+  /*span 2*/
+  span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s;
+  }
+
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
     }
-
-    .content {
-      padding: 10px;
-
-      h2 {
-        font-size: 18px;
-        margin-bottom: 5px;
-      }
-
-      p {
-        font-size: 14px;
-        margin-bottom: 5px;
-      }
-
-      h3 {
-        font-size: 16px;
-      }
+    50%,100% {
+      top: 100%;
     }
   }
-`;
 
+  /*span 3*/
+  span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s;
+  }
 
-export const Overlay = styled.div`
-padding-top: 30px;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-justify-content: center;
-position: fixed;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.9);
-z-index: 1;
-display: flex;
-justify-content: flex-start;
-align-items: center;
-color: #fefefe;
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
 
-img {
-    width: 500px;
-    height: 500px;
-}
+  /*span 4*/
+  span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, ${props => props.start ? "#00FFFF" : " #FF0000"});
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s;
+  }
+
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
 `;
