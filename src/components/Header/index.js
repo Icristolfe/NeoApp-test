@@ -40,7 +40,7 @@ export function Header() {
                   <span></span>
                   <span></span>
                   <span></span>
-                  Carrinho < FaShoppingCart />
+                  Cart < FaShoppingCart />
                 </>
 
             </StyledLink>

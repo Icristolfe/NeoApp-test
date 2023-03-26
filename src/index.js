@@ -10,7 +10,10 @@ import { ToastContainer } from 'react-toastify';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ToastContainer autoClose={2000} theme="dark" />
+    <ToastContainer
+    autoClose={1000}
+    theme="dark"
+    position="top-center" />
     <CartProvider>
     <Provider store={store}>
       <RoutesApp />

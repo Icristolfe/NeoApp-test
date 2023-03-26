@@ -6,7 +6,17 @@ import { Header as TopHeader } from "../../components/Header";
 import formatDolar from "../../utils/formatDolar";
 
 
-import { Container, ContainerItems, CartContainer, Header, EmptyCart } from './styles'
+import {
+  Container,
+  ContentItems,
+  ContainerItems,
+  CartContainer,
+  Header,
+  EmptyCart
+} from './styles'
+
+import CartResume from '../../components/CartResume'
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 
 
 function Cart() {
@@ -16,13 +26,15 @@ function Cart() {
   return (
     <Container>
       <TopHeader />
+      <ContentItems >
+
       <ContainerItems>
 
       <Header>
         <p>ID</p>
-        <p>Itens</p>
-        <p>Preço</p>
-        <p>Quantidade</p>
+        <p>Items</p>
+        <p>Price</p>
+        <p>Quantity</p>
         <p>Total</p>
       </Header>
 
@@ -37,19 +49,23 @@ function Cart() {
                 <p>{formatDolar(product.FinalPrice)}</p>
 
                   <div className="quantity-container">                
-                    <button  onClick={() => decreaseProduct(product.id)}>-</button>
+                    <button  onClick={() => decreaseProduct(product.id)}><FaMinusCircle /></button>
                   <p>{product.quantity}</p>
-                    <button onClick={() => increaseProduct(product.id)}>+</button>
+                    <button onClick={() => increaseProduct(product.id)}><FaPlusCircle /></button>
                   </div>
 
                   <p>{formatDolar(product.FinalPrice * product.quantity)}</p>
 
               </CartContainer>
             ))
-          ) : (<EmptyCart>Carrinho Vazio</EmptyCart>)
+          ) : (<EmptyCart>Empty Cart</EmptyCart>)
           
         }
       </ContainerItems>
+        
+      <CartResume />
+
+      </ContentItems>
     </Container>
   );
 }

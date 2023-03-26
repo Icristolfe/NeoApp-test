@@ -24,53 +24,57 @@ import { Header } from "../../components/Header";
 
 function Home() {
 
+
+
   const navigate = useNavigate();
   const [ pageComics, setPageComics] = useState(null)
   const [selectedPageComic, setSelectedPageComic] = useState(null);
   const dispatch = useDispatch();
   const { putProductInCart } = useCart();
 
-  
   useEffect(() => {
     
+    const comicsData = localStorage.getItem("comicsData");
 
-    async function getComics() {
-      const { data } = await api.get('/comics');
+    if (comicsData) {
 
-     
-      
-      // Adiciona a propriedade "rare" aleatoriamente a dois comics
-      const rareIndices = [];
+      setPageComics(JSON.parse(comicsData));
 
-      while (rareIndices.length < 2) {
-        const index = Math.floor(Math.random() * data.data.results.length);
-        if (!rareIndices.includes(index)) {
-          rareIndices.push(index);
-        }
-      }
+    } else {
 
-      const rareComics = data.data.results.map((comic, index) => {
-        const priceWithRandom = comic.prices[0].price + Math.floor(Math.random() * 91) + 10; // número aleatório entre 10 e 100
-
-        if (rareIndices.includes(index)) {
-
-          return { ...comic, rare: true, FinalPrice: priceWithRandom };
-        } else {
-          return { ...comic, FinalPrice: priceWithRandom };
-        }
-      });
-
-      
-      // Atualiza o estado do componente com os resultados modificados
-      dispatch(setComics(rareComics));
-      
-      setPageComics(rareComics);
-
-    }
+      api.get("/comics").then(({ data }) => {
+        const rareIndices = [];
     
-    getComics();
-  }, [dispatch]);
+        while (rareIndices.length < 2) {
+          const index = Math.floor(Math.random() * data.data.results.length);
+          if (!rareIndices.includes(index)) {
+            rareIndices.push(index);
+          }
+          
+        }
   
+        const rareComics = data.data.results.map((comic, index) => {
+          const priceWithRandom = comic.prices[0].price + Math.floor(Math.random() * 91) + 10; // número aleatório entre 10 e 100
+  
+          if (rareIndices.includes(index)) {
+  
+            return { ...comic, rare: true, FinalPrice: priceWithRandom };
+          } else {
+            return { ...comic, FinalPrice: priceWithRandom };
+          }
+        });
+  
+        
+        // Atualiza o estado do componente com os resultados modificados
+        dispatch(setComics(rareComics));
+        
+        setPageComics(rareComics);
+        localStorage.setItem("comicsData", JSON.stringify(rareComics));
+        setPageComics(rareComics);
+      });
+    }
+  }, [dispatch]);
+
 
   // Seleciona uma HQ
   const handleSelectComic = (comic) => {
@@ -189,7 +193,7 @@ function Home() {
               width="300px"
               justify="center"
               onClick={() => handleAddComic(selectedPageComic)}>
-                Ver Mais
+                View More
             </StyledLink>
               
             </div>
