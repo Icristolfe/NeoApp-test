@@ -147,13 +147,19 @@ export const Overlay = styled.div`
   z-index: 1;
   color: ${textColor};
   padding-top: 15px;
+    overflow: auto;
+
+
+  &&::-webkit-scrollbar {
+    width: 0px;
+    background-color: transparent;
+}
 
   .selected-comic {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    width: 30vw;
+    width: 40vw;
     height: 60vh;
     max-height: 900px;
     overflow: none;
@@ -165,7 +171,6 @@ export const Overlay = styled.div`
         width: 90%;
         max-width: 90%;
         max-height: none;
-        flex-direction: row;
         overflow: none;
       
     }
@@ -177,11 +182,7 @@ export const Overlay = styled.div`
       border-radius: 10px;
       margin-bottom: 10px;
 
-      @media(max-width: 480px) { /* Mobile */
 
-      width: 30%;
-      height: 40%;
-}
     }
 
     h2 {
