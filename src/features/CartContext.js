@@ -7,6 +7,11 @@ const CartContext = createContext({})
 export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([])
 
+  
+  function updateCart(newCartProducts) {
+    setCartProducts(newCartProducts)
+  }
+
   const putProductInCart = async product => {
     const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)
     let newCartProducts = []
@@ -82,7 +87,8 @@ export const CartProvider = ({ children }) => {
         cartProducts,
         putProductInCart,
         increaseProduct,
-        decreaseProduct
+        decreaseProduct,
+        updateCart
       }}
     >
       {children}

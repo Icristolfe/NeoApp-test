@@ -21,7 +21,10 @@ import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 
 function Cart() {
 
+
   const { cartProducts, increaseProduct, decreaseProduct } = useCart()
+
+  console.log(cartProducts);
 
   return (
     <Container>
@@ -42,19 +45,35 @@ function Cart() {
         {
           cartProducts  && cartProducts.length > 0 ? (
             cartProducts.map(product => (
+
               <CartContainer key={product.id}>
-                <p>#{product.id}</p>
-                <p>{product.title.slice(0, 30) + "..." }</p>
 
-                <p>{formatDolar(product.FinalPrice)}</p>
+                <p className={product.rare ? 'rare' : ''}>#{product.id}</p>
 
-                  <div className="quantity-container">                
-                    <button  onClick={() => decreaseProduct(product.id)}><FaMinusCircle /></button>
-                  <p>{product.quantity}</p>
-                    <button onClick={() => increaseProduct(product.id)}><FaPlusCircle /></button>
+                <p className={product.rare ? 'rare' : ''}>
+                  
+                  {product.title?.slice(0, 30) + "..." }
+
+                </p>
+
+
+                <p className={product.rare ? 'rare' : ''}>{formatDolar(product.FinalPrice)}</p>
+
+                  <div className="quantity-container">
+
+                    <button onClick={() => decreaseProduct(product.id)}>
+                      <FaMinusCircle />
+                    </button>
+
+                  <p className={product.rare ? 'rare' : ''}>{product.quantity}</p>
+                  
+                    <button onClick={() => increaseProduct(product.id)}>
+                      <FaPlusCircle />
+                    </button>
+
                   </div>
 
-                  <p>{formatDolar(product.FinalPrice * product.quantity)}</p>
+                  <p className={product.rare ? 'rare' : ''}>{formatDolar(product.FinalPrice * product.quantity)}</p>
 
               </CartContainer>
             ))

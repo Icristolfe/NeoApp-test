@@ -52,7 +52,7 @@ export const ContainerItems = styled.div`
     "content";
   grid-gap: 10px;
   overflow: auto;
-  max-height: 50%;
+  height: 70%;
   
 
 
@@ -102,6 +102,10 @@ export const CartContainer = styled.div`
   grid-gap: 10px 15px;
   border-bottom: 1px solid ${textColor};
   text-align: center;
+
+  .rare {
+    color: #00FFFF
+  }
 
   .quantity-container {
     display: flex;

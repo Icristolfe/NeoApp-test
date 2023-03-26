@@ -18,6 +18,19 @@ export const Container = styled.div`
     border-right: 1px solid rgb(255, 255, 255);
     width: 31%;
 
+    .cupons {
+      margin-top: 10px;
+
+      input {
+        padding-left: 5px;
+        background: ${secondaryColor};
+        color: ${textColor};
+        height: 30px;
+        border-radius: 10px;
+        border: 1px solid rgb(255, 255, 255);
+      }
+    }
+
   .container {
   
   & > h2 {
