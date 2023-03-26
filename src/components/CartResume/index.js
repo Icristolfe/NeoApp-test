@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 import { useCart } from '../../features/CartContext'
 import formatDolar from '../../utils/formatDolar'
@@ -9,7 +8,6 @@ import { Container } from './styles'
 
 function CartResume() {
 
-  const navigate = useNavigate()
   const [finalPrice, setFinalPrice] = useState(0)
 
 
@@ -39,7 +37,7 @@ function CartResume() {
       await toast.success('Request made successfully')
 
       setTimeout(() => {
-        navigate("/")
+        window.location.reload()
         
       }, 2000);
 
