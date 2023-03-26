@@ -29,7 +29,7 @@ export const ContentItems = styled.div`
   padding: 40px 0 ;
 
   @media only screen and (max-width: 480px) {
-    /* Estilos para telas menores que 768px */
+    
     padding: 10px;
     width: 90vw;
     flex-direction: column;
@@ -40,12 +40,11 @@ export const ContentItems = styled.div`
 
 export const ContainerItems = styled.div`
   background: ${secondaryColor};
-  box-shadow: rgb(255 255 255 / 20%) 0px 10px 40px;
-  border-radius: 20px;
   padding: 30px;
   width: 60vw;
   padding: 10px 20px;
-  border: 1px solid rgb(255, 255, 255);
+    border-left: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
   align-items: center;
   display: grid;
   grid-template-areas: 
@@ -54,18 +53,20 @@ export const ContainerItems = styled.div`
   grid-gap: 10px;
   overflow: auto;
   max-height: 50%;
+  
 
 
-  &::-webkit-scrollbar-button {
-    border-top-right-radius: 15px;
-  }
+  &&::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent;
+}
 
   h1 {
     color: ${textColor};
   }
 
   @media only screen and (max-width: 768px) {
-    /* Estilos para telas menores que 768px */
+    
     padding: 10px;
     width: 90vw;
   }

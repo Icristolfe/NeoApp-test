@@ -4,9 +4,7 @@ const secondaryColor = "#000000";
 const textColor = "#FFFFFF";
 
 export const Container = styled.div`
-  background: #${secondaryColor};
-  box-shadow: rgb(255 255 255 / 20%) 0px 10px 40px;
-    border-radius: 20px;
+  background: ${secondaryColor};
     display: flex;
     flex-direction: column;
     -webkit-box-pack: justify;
@@ -16,7 +14,8 @@ export const Container = styled.div`
     line-height: 16px;
     color: rgb(255, 255, 255);
     padding: 10px 20px;
-    border: 1px solid rgb(255, 255, 255);
+    border-left: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
     width: 31%;
 
   .container {
