@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { FaPlus } from "react-icons/fa";
 
 import { useCart } from '../../features/CartContext'
 import formatDolar from '../../utils/formatDolar'
@@ -9,7 +10,6 @@ import { Container } from './styles'
 function CartResume() {
 
   const [finalPrice, setFinalPrice] = useState(0)
-
 
   const [deliveryTax, setDeliveryTax] = useState(10)
   const [discountRare, setDiscountRare] = useState(false)
@@ -51,8 +51,8 @@ function CartResume() {
    
   }
   function handleDiscount(e) {
-    const RareComic = 'RARE'
-    const ComumComic = 'COMUM'
+    const RareComic = 'rare'
+    const ComumComic = 'comum'
     
   
     if (e === "Enter") {
@@ -113,7 +113,15 @@ function CartResume() {
             onKeyUp={(e) => { handleDiscount(e.code) }}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Digite Seu Cupom"
-/>
+                />
+
+                <Button
+                justify="center"
+                style={{height:20}}
+                onClick={() => handleDiscount("Enter")}
+                >
+                  <FaPlus />
+                </Button>
 
 
           </div>

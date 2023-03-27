@@ -20,6 +20,8 @@ export const Container = styled.div`
 
     .cupons {
       margin-top: 10px;
+      display: flex;
+      flex-direction: row;
 
       input {
         padding-left: 5px;

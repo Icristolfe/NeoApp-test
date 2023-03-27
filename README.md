@@ -1,53 +1,37 @@
-<h1 align="center">🍉 HealthyFood</h1>
+<h1 align="center"> HQ APPs </h1>
 
-![Gif do Teste](./public/assets/img/Gif.gif)
+![Gif do Teste](./public/assets/example.gif)
 
-> The project is a test that simulates a healthy food recipe website. It includes a registration and login system.
+> The project is a comic book listing page containing the display of a single comic in addition to the shopping cart.
 
-Check out the application: https://healthy-foood.netlify.app <br>
-Video of the application: https://www.youtube.com/watch?v=jwgasXZhZMQ
+Check out the application: https://neo-app-test-cristolfe.netlify.app/<br>
 
 ## :page_facing_up: Explanation
+- A primeira página do projeto é uma página de listagem de HQs, onde 10% das HQs com raridade são selecionadas aleatoriamente e recebem um valor aleatório ao serem carregadas. Cada HQ nessa página possui um botão para adicioná-la diretamente ao carrinho de compras.
 
-The first page of the project is the login page which features fields for email and password. Both fields can be filled after creating an account on the registration page and gaining access to the main page.
+- Ao clicar em uma HQ, ela é exibida em destaque na página, com a opção de ver mais informações sobre a HQ em outra página caso disponível e  a possibilidade de adicionar a hq ao carrinho ou voltar a página home.
 
-The registration page features 7 fields to be filled in: name, email, password, password confirmation, date of birth, CPF, and CEP. The fields are validated, so they must meet certain requirements, such as not leaving a field blank, a valid email, a password of at least 6 digits, the password and password confirmation fields must match, the CPF must have a minimum and maximum of 11 digits, and the CEP must be an existing one, as it is being filled in with the Post Office API. If not filled in correctly, an alert will appear on the screen notifying the user that changes need to be made.
-
-After creating an account, the data will be stored in Firebase, which will enable access through the login page. The login must be filled in with the identical email registered, so upper and lowercase letters must be followed. The password also follows the email's conditions and has a specific page for password recovery, where an email will be sent to the user through Firebase. When logging in, the user will be directed to the main page, which features several sections and a menu with the option to enter their profile, which displays user information, and another logout button that logs you out of the page. The home page is responsive and features a hamburger menu when the resolution reaches 800 width. In addition, a carousel has been added to the "Read Our Blog" section.
-
-It is not possible to access the home page without being logged in because it is a private route, so you need to register an account. To log out, just click the menu button as mentioned in the above paragraph. In case the user tries to access a nonexistent route, they will be directed to a page displaying Error 404 and a link below to return to the login page.
-
-The link to the Youtube video presenting the entire project is above.
-
+- A página do carrinho de compras contém todos os pedidos realizados e possui um campo para a aplicação de cupons raros e comuns aos pedidos.
 ## 📁 Pages
 
 The site is composed of 6 different pages:
 
-- **Login:** Users can enter their registered data and log in to the main page.
-- **Register:** Users can create their accounts on this page.
-- **Forgot Password:** Users can enter their email and receive a message in their email to reset their password.
-- **Home:** The main page of the project, which features a healthy food recipe website.
-- **Profile Information:** A page that displays the data the user entered in registration.
-- **Error 404:** A page that appears when a person enters a route that does not exist. Below it presents a link to return to the login page.
-
+- **Home:** Página de listagem das HQ's.
+- **ComicPage:** Página de uma HQ específica exibida ao clicar em "view more".
+- **Carrinho:** Página contendo todos os produtos já adicionados ao carrinho.
 ## :dart: Steps
 
 :heavy_check_mark: Home page;\
+:heavy_check_mark: Consuming API;\
 :heavy_check_mark: Responsiveness of Home page;\
-:heavy_check_mark: Registration page;\
-:heavy_check_mark: Responsiveness of registration page;\
-:heavy_check_mark: Login page;\
-:heavy_check_mark: Responsiveness of login page;\
-:heavy_check_mark: Password reset page;\
-:heavy_check_mark: Error 404 page;\
-:heavy_check_mark: API for filling in additional fields of the postal code;\
-:heavy_check_mark: Creating a hamburger menu in the header;\
-:heavy_check_mark: Storing form data in Firebase;\
-:heavy_check_mark: Password reset with Firebase;\
-:heavy_check_mark: Private Home route;\
-:heavy_check_mark: Logout button;\
-:heavy_check_mark: Creating a page that shows user information;\
-:heavy_check_mark: Private Home route;\
+:heavy_check_mark: Redux Toolkit;\
+:heavy_check_mark: ComicPage;\
+:heavy_check_mark: Responsiveness of Comic Page;\
+:heavy_check_mark: Private Comic Page route;\
+:heavy_check_mark: Cart Page;\
+:heavy_check_mark: Responsiveness of Cart Page;\
+:heavy_check_mark: Header;\
+:heavy_check_mark: Adding apply coupon button;\
 :heavy_check_mark: Finished;
 
 ## :rocket: Technologies
@@ -56,13 +40,9 @@ The following tools were used in this project:
 
 - [ReactJs](https://pt-br.reactjs.org/)
 - [Axios](https://axios-http.com/docs/intro)
-- [React Hook Form](https://react-hook-form.com/get-started)
-- [Yup](https://www.npmjs.com/package/yup)
-- [SweetAlert2](https://sweetalert.js.org/docs/)  
 - [Toast](https://fkhadra.github.io/react-toastify/introduction/)
-- [Firebase](https://firebase.google.com/docs?hl=pt)  
+- [Framer Motion](https://www.framer.com/motion/)  
 - [Local Storage](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage)
-- [Carousel](https://www.npmjs.com/package/react-multi-carousel)
 - [React Icon](https://react-icons.github.io/react-icons/)
 
 ## :closed_book: Requirements ##
@@ -73,66 +53,15 @@ Before starting, you need to have [Git](https://git-scm.com) and [Node](https://
 
 ```bash
 # Clone this project
-$ git clone https://github.com/Kayke-Fujinaka/HealthyFood
+$ git clone git@github.com:Icristolfe/NeoApp-test.git
 # Access
-$ cd teste-gcb
+$ cd neo-app-test
 # Install dependencies
 $ yarn or npm 
 # Run the project
 $ yarn start or npm start 
 # The server will initialize in the <http://localhost:3000>
 ```
-
-If you clone the project, you will need to create your own Firebase project. After that, put your Firebase token in the .env file. I'll leave an example below:
-
-```bash
-  API_KEY: "AIzah63dg9emUtIKmMCvrkSJLw-GZIl0a8qmEs",
-  AUTH_DOMAIN: "example-8a13f.firebaseapp.com",
-  PROJECT_ID: "example-8a13f",
-  STORAGE_BUCKET: "example-88a13f.appspot.com",
-  MESSAGING_SENDER_ID: "65936679370",
-  APP_ID: "1:659905779370:web:16c3ac97ef413h13ga2d3",
-  MEASUREMENT_ID: "G-BL1CGU42B6"
-```
-
-After that, pass it to the file where Firebase is located. For example:
-
-```bash
-  const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSASING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
-};
-```
-
-## 🤝 Contributors
-
-We want to thank the following people who contributed to this project:
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/82662425?v=4" width="100px;" alt="Foto do Icaro Cristolfe no GitHub"/><br>
-        <sub>
-          <b>Ícaro Cristolfe</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
-</table>
-
-## 📝 License
-
-This project is under license. See the [LICENSE](LICENSE.md) file for more details.
-
-&#xa0;
-
-<a href="#top">Back to top</a>
 
 
 **Necessário docker compose instalado para rodar o app**
@@ -154,9 +83,40 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 Certifique-se de verificar se há uma versão mais recente no site oficial: https://docs.docker.com/compose/install/
 
 Defina as permissões corretas para o arquivo baixado executando o seguinte comando:
-bash
-Copy code
+
+
 sudo chmod +x /usr/local/bin/docker-compose
 Verifique se o Docker Compose foi instalado corretamente executando o comando docker-compose --version em um terminal.
 Pronto! Agora você tem o Docker Compose instalado em seu sistema e está pronto para usá-lo para orquestrar seus contêineres Docker.
+
+
+e para baixar o container rodar utilize: docker-compose up -d
+
 ```
+
+
+```bash
+  Cupom para Itens Raros = rare
+  Cupom para Itens Comuns = comum
+
+```
+
+## 🤝 Contributors
+
+We want to thank the following people who contributed to this project:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/82662425?v=4" width="100px;" alt="Foto do Icaro Cristolfe no GitHub"/><br>
+        <sub>
+          <b>Ícaro Cristolfe</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+<a href="#top">Back to top</a>
