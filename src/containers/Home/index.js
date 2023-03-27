@@ -133,7 +133,8 @@ function Home() {
               width="40%"
               justify="center"
               href="#" 
-              onClick={ (e) => handleAddToCart(e,comic)}>
+              onClick={ (e) => handleAddToCart(e,comic)}
+              data-testid="add-to-cart-button">
                 <>
                   <FaShoppingCart />
                 </>

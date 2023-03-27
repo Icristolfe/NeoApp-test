@@ -24,7 +24,6 @@ function Cart() {
 
   const { cartProducts, increaseProduct, decreaseProduct } = useCart()
 
-  console.log(cartProducts);
 
   return (
     <Container>
@@ -65,17 +64,17 @@ function Cart() {
                     <FaMinusCircle />
                   </button>
 
-                  <button data-testid="increase-quantity-button" onClick={() => increaseProduct(product.id)}>
+                  <button data-testid="cart-item" onClick={() => increaseProduct(product.id)}>
                     <FaPlusCircle />
                   </button>
 
                   </div>
 
-                  <p className={product.rare ? 'rare' : ''}>{formatDolar(product.FinalPrice * product.quantity)}</p>
+                  <p className={product.rare ? 'rare' : ''} data-testid="cart-total">{formatDolar(product.FinalPrice * product.quantity)}</p>
 
               </CartContainer>
             ))
-          ) : (<EmptyCart data-testid="cart-h1">Empty Cart</EmptyCart>)
+          ) : (<EmptyCart>Empty Cart</EmptyCart>)
           
         }
       </ContainerItems>
