@@ -137,7 +137,7 @@ export const CartContainer = styled.div`
   }
 `
 
-export const EmptyCart = styled.p`
+export const EmptyCart = styled.h1`
   padding: 20px;
   font-size: 18px;
   text-align: center;

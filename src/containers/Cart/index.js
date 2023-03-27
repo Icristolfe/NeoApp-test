@@ -46,7 +46,7 @@ function Cart() {
           cartProducts  && cartProducts.length > 0 ? (
             cartProducts.map(product => (
 
-              <CartContainer key={product.id}>
+              <CartContainer key={product.id} data-testid="cart-item">
 
                 <p className={product.rare ? 'rare' : ''}>#{product.id}</p>
 
@@ -61,15 +61,13 @@ function Cart() {
 
                   <div className="quantity-container">
 
-                    <button onClick={() => decreaseProduct(product.id)}>
-                      <FaMinusCircle />
-                    </button>
+                  <button data-testid="decrease-quantity-button" onClick={() => decreaseProduct(product.id)}>
+                    <FaMinusCircle />
+                  </button>
 
-                  <p className={product.rare ? 'rare' : ''}>{product.quantity}</p>
-                  
-                    <button onClick={() => increaseProduct(product.id)}>
-                      <FaPlusCircle />
-                    </button>
+                  <button data-testid="increase-quantity-button" onClick={() => increaseProduct(product.id)}>
+                    <FaPlusCircle />
+                  </button>
 
                   </div>
 
@@ -77,7 +75,7 @@ function Cart() {
 
               </CartContainer>
             ))
-          ) : (<EmptyCart>Empty Cart</EmptyCart>)
+          ) : (<EmptyCart data-testid="cart-h1">Empty Cart</EmptyCart>)
           
         }
       </ContainerItems>

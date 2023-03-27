@@ -110,7 +110,8 @@ function Home() {
 
                   <ContainerCard key={comic.id}
                   className={comic.rare ? 'rare-border' : ''}
-                  rare={comic.rare} >
+                  rare={comic.rare}
+                  >
           
                   <div className="thumbnail">
               
